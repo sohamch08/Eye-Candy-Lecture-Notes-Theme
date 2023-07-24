@@ -219,6 +219,50 @@
 {th}
 
 %================================
+% CLAIM
+%================================
+
+\tcbuselibrary{theorems,skins,hooks}
+\newtcbtheorem[number within=section]{claim}{Claim}
+{%
+	enhanced
+	,breakable
+	,colback = myg!10
+	,frame hidden
+	,boxrule = 0sp
+	,borderline west = {2pt}{0pt}{myg}
+	,sharp corners
+	,detach title
+	,before upper = \tcbtitle\par\smallskip
+	,coltitle = myg!85!black
+	,fonttitle = \bfseries\sffamily
+	,description font = \mdseries
+	,separator sign none
+	,segmentation style={solid, myg!85!black}
+}
+{th}
+
+
+\newtcbtheorem[number within=chapter]{Claim}{Claim}
+{%
+	enhanced
+	,breakable
+	,colback = myg!10
+	,frame hidden
+	,boxrule = 0sp
+	,borderline west = {2pt}{0pt}{myg}
+	,sharp corners
+	,detach title
+	,before upper = \tcbtitle\par\smallskip
+	,coltitle = myg!85!black
+	,fonttitle = \bfseries\sffamily
+	,description font = \mdseries
+	,separator sign none
+	,segmentation style={solid, myg!85!black}
+}
+{th}
+
+%================================
 % EXAMPLE BOX
 %================================
 
@@ -493,6 +537,7 @@
 \newcommand{\cor}[3][]{\begin{corolary}{#2}{#1}#3\end{corolary}}
 \newcommand{\corc}[3][]{\begin{corollary}{#2}{#1}#3\end{corollary}}
 \newcommand{\lem}[3][]{\begin{lemma}{#2}{#1}#3\end{lemma}}
+\newcommand{\clm}[3][]{\begin{claim}{#2}{#1}#3\end{claim}}
 \newcommand{\wc}[3][]{\begin{wconc}{#2}{#1}\setlength{\parindent}{1cm}#3\end{wconc}}
 \newcommand{\thmcon}[1]{\begin{Theoremcon}{#1}\end{Theoremcon}}
 \newcommand{\ex}[3][]{\begin{Example}{#2}{#1}#3\end{Example}}
