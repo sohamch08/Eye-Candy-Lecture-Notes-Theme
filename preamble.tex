@@ -3,13 +3,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\usepackage[tmargin=2cm,rmargin=1in,lmargin=1in,margin=0.85in,bmargin=2cm,footskip=.2in]{geometry}
+\usepackage[tmargin=2cm,rmargin=1in,lmargin=1in,margin=0.85in,bmargin=2cm,footskip=.2in]{geometry} % I woulld suggest dont play with the margin. It kind of ruins the contents page.
 \usepackage{amsmath,amsfonts,amsthm,amssymb,mathtools}
 \usepackage{bookmark}
 \usepackage{enumitem}
 \usepackage{hyperref,theoremref}
 \hypersetup{
-	pdftitle={Analysis 2 Class Notes},
+	pdftitle={}, % Give a pdf name
 	colorlinks=true, linkcolor=doc!90,
 	bookmarksnumbered=true,
 	bookmarksopen=true
@@ -17,24 +17,14 @@
 \usepackage[most,many,breakable]{tcolorbox}
 \usepackage{xcolor}
 \usepackage{graphicx}
-\graphicspath{ {./images/} }
+%\graphicspath{ {./images/} } %give your suitable image path
 \usepackage{varwidth}
-\usepackage{varwidth}
-\usepackage{etoolbox}
-%\usepackage{authblk}
+\usepackage{authblk}
 \usepackage{nameref}
 \usepackage{multicol,array}
 \usepackage{tikz-cd}
 \usepackage{cancel}
 \usepackage{pgfplots}
-\pgfplotsset{compat=newest}
-\usepgfplotslibrary{patchplots}
-\usepackage{anyfontsize}
-\usepackage{sectsty}
-%\usepackage{import}
-%\usepackage{xifthen}
-%\usepackage{pdfpages}
-%\usepackage{transparent}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -522,6 +512,10 @@
 
 %% The environments which are appears in pairs one of them is for the chapters which have sections whose environment name starts with small letter and the other is for chapters which do not have sections whose environment name starts with capital letter. In the short command for the latter I used the letter 'c' to represent it should be use if it is not under a section
 
+%% Short commands for environments goes like this
+%% \<command name>[<reference name>]{<heading>}{<description>}
+%% For example in theorem for suppose Fundamental Theorem of Calculus i will write like this
+%% \thm[ftc]{Fundamental Theorem of Calculus}{Theorem Statement}
 
 \NewDocumentCommand{\EqM}{ m O{black} m}{%
 	\tikz[remember picture, baseline, anchor=base] 
@@ -548,6 +542,13 @@
 \newcommand{\opnc}[3][]{\begin{Open}[colbacktitle=myp!75!black]{#2}{#1}#3\end{Open}}
 \newcommand{\qs}[3][]{\begin{question}{#2}{#1}#3\end{question}}
 \newcommand{\pf}[2]{\begin{myproof}[#1]#2\end{myproof}}
+
+%% The proof environment actually multipurpose. For a proof many things actually play. Proof idea. Proof overview. Main pproof. Proof prerequisites etc. Thats why the first option uses the actual name of what exactly we are writing for the proof. It will go like this
+%% Proof idea: \pf{Proof Idea}{content..}
+%% Proof Overview: \pf{Proof Overview}{content..}
+%% Proof : \pf{Proof}{content..}
+
+
 \newcommand{\nt}[1]{\begin{note}#1\end{note}}
 
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
