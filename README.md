@@ -1,8 +1,11 @@
 # Eye-Candy-Lecture-Notes-Theme
 This is a Eye Candy lecture note taking theme I have created for my personal course lecture notes. If you want to check an actual example in using this theme. Then you can check my [Analysis Lecture Notes](analysis_class-note.pdf). If you want to just view some pages of using this theme. Here check these pages
 
-<img  width=100% src="images/preview-1.png">
-<img  width=100% src="images/preview-2.png">
+<div width=100%>
+<img  align=left width=48% src="images/preview-1.png">
+<img  align=right width=48% src="images/preview-2.png">
+</div>
+
 
 ## Title Page
 There are two custom title pages. I have named them `\mytitlea` and `\mytitleb`. Among them I have used the `\mytitleb` in the analysis lecture notes.
