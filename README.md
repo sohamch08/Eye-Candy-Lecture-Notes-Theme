@@ -1,14 +1,24 @@
 # Eye-Candy-Lecture-Notes-Theme
 This is a Eye Candy lecture note taking theme I have created for my personal course lecture notes. If you want to check an actual example in using this theme. Then you can check my [Analysis Lecture Notes](analysis_class-note.pdf). If you want to just view some pages of using this theme. Here check these pages
 
-<img  src="images/preview-1.png">
-<img  src="images/preview-2.png">
+<img  width=100% src="images/preview-1.png">
+<img  width=100% src="images/preview-2.png">
 
+## Title Page
+There are two custom title pages. I have named them `\mytitlea` and `\mytitleb`. Among them I have used the `\mytitleb` in the analysis lecture notes.
+
+<img  width=100% src="images/title-1.png">
+<img  width=100% src="images/title-2.png">
+
+The command goes like this
+```tex
+\mytitleb{Title}{Author}{Email}{Year}
+```
 
 ## Theorem Boxes
 I have many theorem boxes for Theorems, Corollaries, Lemmas, Claims, Definitions, Examples, Questions etc.
 
-![Theorem Boxes](images/theorem%20boxes.png) 
+<img  width=100% src="images/theorem%20boxes.png"> 
 
 The environments which are appears in pairs one of them is for the chapters which have sections whose environment name starts with small letter and the other is for chapters which do not have sections whose environment name starts with capital letter. In the short command for the latter I used the letter 'c' to represent it should be use if it is not under a section
 
@@ -27,12 +37,12 @@ Proof idea: `\pf{Proof Idea}{content..}`
 Proof Overview: `\pf{Proof Overview}{content..}`
 Proof : `\pf{Proof}{content..}`
 
->Thereom boxes, Proof environment and contents page are set up in the file [preamble](preamble.tex)
+>Thereom boxes, Proof environment, Title pages and contents page are set up in the file [preamble](preamble.tex)
 
 ## Contents Page
 I have a beautiful looking contents page. 
 
-![content](images/contents.png)
+<img  width=100% src="images/contents.png">
 
 >I woulld suggest dont play with the margin. It kind of ruins the contents page.
 
