@@ -14,6 +14,22 @@ The command goes like this
 ```tex
 \mytitleb{Title}{Author}{Email}{Year}
 ```
+>- Use this command inside the `\begin{document}`.
+>- Do not use the usual `\maketitle` process here ie you first wrote the `title{}` `\author{}` and `\date{}` then inside the `\begin{document}`, `\maketitle`.
+>- I would recommend first add `\thispagestyle{empty}` to make the title page without pagenumber. And after the `\mytitleb` command add a `\newpage` to make a forcefull page break.
+
+So the whole command block looks like this
+```tex
+\begin{document}
+	
+\thispagestyle{empty}
+\mytitleb{Title Here}{Soham Chatterjee}{sohamchatterjee999@gmail.com}{2021}
+\newpage
+...
+Put your content here
+...
+\end{document}
+```
 
 ## Theorem Boxes
 I have many theorem boxes for Theorems, Corollaries, Lemmas, Claims, Definitions, Examples, Questions etc.
