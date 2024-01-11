@@ -9,8 +9,7 @@
 \usepackage{enumitem}
 \usepackage{hyperref,theoremref}
 \hypersetup{
-	pdftitle={}, % Give a pdf name
-	colorlinks=true, linkcolor=doc!90,
+	colorlinks=true, linkcolor=doc!80, urlcolor=doc!80, citecolor=myr,
 	bookmarksnumbered=true,
 	bookmarksopen=true
 }
@@ -25,8 +24,11 @@
 \usepackage{tikz-cd}
 \usepackage{cancel}
 \usepackage{pgfplots}
-
-
+\usepackage[Sonny]{fncychap}
+\usepackage{mathpazo}
+\usepackage{libertine}
+\usepackage[T1]{fontenc}
+\usepackage[ruled,vlined]{algorithm2e}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SELF MADE COLORS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -38,6 +40,7 @@
 \definecolor{myg}{RGB}{56, 140, 70}
 \definecolor{myb}{RGB}{45, 111, 177}
 \definecolor{myr}{RGB}{199, 68, 64}
+\definecolor{mybg}{HTML}{F2F2F9}
 \definecolor{mytheorembg}{HTML}{F2F2F9}
 \definecolor{mytheoremfr}{HTML}{00007B}
 \definecolor{myexamplebg}{HTML}{F2FBF8}
@@ -56,6 +59,25 @@
 \definecolor{Emerald}{HTML}{00A99D}
 \definecolor{RoyalBlue}{HTML}{0071BC}
 
+\renewcommand{\qed}{\ensuremath{\blacksquare}}
+
+\newtheorem*{observation*}{Observation}
+\newtheorem{observation}{Observation}
+\newtheorem{fact}[observation]{Fact}
+\newtheorem{assumption}{Assumption}[section]
+
+%\renewenvironment{proof}{\noindent{\it \textbf{Proof:}}\hspace*{1em}}{\qed\bigskip\\}
+\newenvironment{proof-sketch}{\noindent{\bf Sketch of Proof:}\hspace*{1em}}{\qed\bigskip\\}
+\newenvironment{proof-idea}{\noindent{\bf Proof Idea:}\hspace*{1em}}{\qed\bigskip\\}
+\newenvironment{proof-of-lemma}[1]{\noindent{\bf Proof of Lemma #1:}\hspace*{1em}}{\qed\bigskip\\}
+\newenvironment{proof-of-claim}[1]{\noindent{\bf Proof of Claim #1:}\hspace*{1em}}{\qed\bigskip\\}
+\newenvironment{proof-attempt}{\noindent{\bf Proof Attempt:}\hspace*{1em}}{\qed\bigskip\\}
+\newenvironment{proofof}[1]{\noindent{\bf Proof:}
+	of #1:\hspace*{1em}}{\qed\bigskip\\}
+\newenvironment{remark}{\noindent{\bf Remark:}\hspace*{1em}}{\bigskip\\}
+\newenvironment{answer}{%
+	\setlength\parindent{0pt}\par\medskip\textbf{Answer:}\quad}{%
+	\par\medskip}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TCOLORBOX SETUPS
@@ -340,7 +362,7 @@
 % OPEN QUESTION BOX
 %================================
 
-\newtcbtheorem[number within=section]{open}{Open Question}{enhanced,
+\newtcbtheorem[number within=section]{open}{Open tion}{enhanced,
 	before skip=2mm,after skip=2mm, colback=myp!5,colframe=myp!80!black,boxrule=0.5mm,
 	attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight}, varwidth boxed title*=-3cm,
 	boxed title style={frame code={
@@ -388,7 +410,7 @@
 %================================
 
 \makeatletter
-\newtcbtheorem{question}{Question}{enhanced,
+\newtcbtheorem[number within=chapter]{problem}{Problem}{enhanced,
 	breakable,
 	colback=white,
 	colframe=myb!80!black,
@@ -419,7 +441,7 @@
 %================================
 
 \makeatletter
-\newtcbtheorem{qstion}{Question}{enhanced,
+\newtcbtheorem[number within=chapter]{prob}{Problem}{enhanced,
 	breakable,
 	colback=white,
 	colframe=mygr,
@@ -441,7 +463,7 @@
 		(frame.north) -| cycle;
 	},
 	#1
-}{def}
+}{qs}
 \makeatother
 
 \newtcbtheorem[number within=chapter]{wconc}{Wrong Concept}{
@@ -540,8 +562,17 @@
 \newcommand{\dfnc}[3][]{\begin{definition}[colbacktitle=red!75!black]{#2}{#1}#3\end{definition}}
 \newcommand{\opn}[3][]{\begin{open}[colbacktitle=myp!75!black]{#2}{#1}#3\end{open}}
 \newcommand{\opnc}[3][]{\begin{Open}[colbacktitle=myp!75!black]{#2}{#1}#3\end{Open}}
-\newcommand{\qs}[3][]{\begin{question}{#2}{#1}#3\end{question}}
+\newcommand{\pr}[3][]{\begin{problem}{#2}{#1}#3\end{problem}}
 \newcommand{\pf}[2]{\begin{myproof}[#1]#2\end{myproof}}
+
+
+\newcommand{\algo}[3][]{\begin{algorithm}
+		\DontPrintSemicolon
+		\Begin{
+			#2	
+		}
+		\caption{#3\label{#1}}
+\end{algorithm}}
 
 %% The proof environment actually multipurpose. For a proof many things actually play. Proof idea. Proof overview. Main pproof. Proof prerequisites etc. Thats why the first option uses the actual name of what exactly we are writing for the proof. It will go like this
 %% Proof idea: \pf{Proof Idea}{content..}
@@ -563,6 +594,8 @@
 	\proof[\bfseries #1: ]%
 }{\endproof}
 \newcounter{mylabelcounter}
+
+
 
 \makeatletter
 \newcommand{\setword}[2]{%
@@ -647,10 +680,15 @@
 []
 \titlecontents*{subsection}[3.7pc]
 {\addvspace{-1pt}\small}
+{\hspace*{2pc}\contentslabel[\thecontentslabel]{2pc}}
 {}
-{}
-{\ --- \small\thecontentspage}
-[ \textbullet\ ][]
+{\hfill\small \thecontentspage}
+[ \textbullet\ ]
+%{\addvspace{-1pt}\small}
+%{}
+%{}
+%{\ --- \small\thecontentspage}
+%[ \textbullet\ ][]
 
 \makeatletter
 \renewcommand{\tableofcontents}{%
@@ -666,7 +704,9 @@
 \makeatother
 
 
-
+	
+\newcommand\colorlink[3]{\href{#2}{\color{#1}#3}}
+\newcommand\colorurl[2]{{\color{#1}\url{#2}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title Page 1
