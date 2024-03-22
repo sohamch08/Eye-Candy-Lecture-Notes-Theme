@@ -47,6 +47,56 @@ For example in theorem for suppose Fundamental Theorem of Calculus i will write 
 ```tex
 \thm[ftc]{Fundamental Theorem of Calculus}{Theorem Statement}
 ```
+## Referencing Theorems
+Take the code for the `Theorem` box
+```tex
+\tcbuselibrary{theorems,skins,hooks}
+\newtcbtheorem[number within=section]{Theorem}{Theorem}
+{%
+	enhanced,
+	breakable,
+	colback = mytheorembg,
+	frame hidden,
+	boxrule = 0sp,
+	borderline west = {2pt}{0pt}{mytheoremfr},
+	sharp corners,
+	detach title,
+	before upper = \tcbtitle\par\smallskip,
+	coltitle = mytheoremfr,
+	fonttitle = \bfseries\sffamily,
+	description font = \mdseries,
+	separator sign none,
+	segmentation style={solid, mytheoremfr},
+}
+{th}
+```
+Here take the last `{th}` term in mind cause this will be used in referencing. Suppose a use case of theorem
+
+```tex
+\begin{Theorem}{title}{refer}
+  Theroem Statement
+	...
+\end{Theorem}
+```
+To refer this in another place use the command `\ref{th:refer}`. This will put `(1.1.1)` type of text with a link to that theorem in your document. To use custom text for example I want to put `Theorem 1.1.1` and then use the command
+
+```tex
+\hyperref[th:refer]{Theorem \ref{th:refer}}
+```
+This will do the work. This process will work for all the theorem boxes I have defined. Here are the terms to be used in each type of theorem boxes
+
+```
+Theorem:		th
+Claim:			th
+Lemma:			th
+Corollary:		th
+Definition:		def
+Example:		ex
+Question:		qs
+Exercise:		def
+Open Question:		def
+```
+
 
 ## Proof
 The proof environment actually multipurpose. For a proof many things actually play. Proof idea. Proof overview. Main pproof. Proof prerequisites etc. Thats why the first option uses the actual name of what exactly we are writing for the proof. It will go like this
