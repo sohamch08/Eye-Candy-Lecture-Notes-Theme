@@ -9,7 +9,7 @@
 \usepackage[inline]{enumitem}
 \usepackage{hyperref,theoremref}
 \hypersetup{
-	colorlinks=true, linkcolor=doc!80, urlcolor=doc!80, citecolor=myr,
+	colorlinks=true, linkcolor=doc!80, urlcolor=doc!80, citecolor=mydefinitfr!80!black,
 	bookmarksnumbered=true,
 	bookmarksopen=true
 }
@@ -20,20 +20,24 @@
 \usepackage{varwidth}
 \usepackage{authblk}
 \usepackage{nameref}
-\usepackage{multicol,array}
+\usepackage{multicol,array,multirow}
 \usepackage{tikz-cd}
 \usepackage{cancel}
 \usepackage{pgfplots}
 %\usepackage[Sonny]{fncychap}
 \usepackage{mathpazo}
+% Use the libertine package for the Libertine font
 \usepackage{libertine}
+\usepackage[libertine]{newtxmath}
 \usepackage{mathrsfs} 
-%\usepackage[T1]{fontenc}
+\usepackage{bbm}
 \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
-
-%%%%%%%%%%% Fancy Header Footer
 \usepackage{fancyhdr}
 \pagestyle{fancy}
+\fancypagestyle{plain}{%
+	\renewcommand{\headrulewidth}{0pt}%
+	\fancyhf{}%
+}
 \fancyhead{}
 \renewcommand{\headrulewidth}{1pt}
 \fancyhead[LE]{\itshape\textsc{\nouppercase\rightmark}}
@@ -42,20 +46,24 @@
 \fancyhead[RE,LO]{\itshape Page \thepage}
 \makeatletter
 \renewcommand{\chaptermark}[1]{%
-	\markboth{%
-		\ifnum\c@secnumdepth>\m@ne
-		\@chapapp\ {\thechapter}: \ %
-		\fi
-		#1%
-	}{}%
+  \markboth{%
+    \ifnum\c@secnumdepth>\m@ne
+      \@chapapp\ {\thechapter} \ %
+    \fi
+  #1%
+  }{}%
 }
 \def\sectionmark#1{%
-	\markright {\MakeUppercase{%
-			\ifnum \c@secnumdepth >\z@
-			\thesection: \ %
-			\fi
-			#1}}}
+    \markright {\MakeUppercase{%
+      \ifnum \c@secnumdepth >\z@
+        \thesection \ %
+      \fi
+      #1}}}
 \makeatother
+
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\rk}{Rank}
+\DeclareMathOperator{\conv}{Conv}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SELF MADE COLORS
@@ -90,22 +98,12 @@
 \renewcommand{\qed}{\ensuremath{\blacksquare}}
 
 \newtheorem*{observation*}{Observation}
+\newtheorem*{assumption*}{Assumption}
 \newtheorem{observation}{Observation}
 \newtheorem{fact}[observation]{Fact}
 \newtheorem{assumption}{Assumption}[section]
 
-%\renewenvironment{proof}{\noindent{\it \textbf{Proof:}}\hspace*{1em}}{\qed\bigskip\\}
-\newenvironment{proof-sketch}{\noindent{\bf Sketch of Proof:}\hspace*{1em}}{\qed\bigskip\\}
-\newenvironment{proof-idea}{\noindent{\bf Proof Idea:}\hspace*{1em}}{\qed\bigskip\\}
-\newenvironment{proof-of-lemma}[1]{\noindent{\bf Proof of Lemma #1:}\hspace*{1em}}{\qed\bigskip\\}
-\newenvironment{proof-of-claim}[1]{\noindent{\bf Proof of Claim #1:}\hspace*{1em}}{\qed\bigskip\\}
-\newenvironment{proof-attempt}{\noindent{\bf Proof Attempt:}\hspace*{1em}}{\qed\bigskip\\}
-\newenvironment{proofof}[1]{\noindent{\bf Proof:}
-	of #1:\hspace*{1em}}{\qed\bigskip\\}
-\newenvironment{remark}{\noindent{\bf Remark:}\hspace*{1em}}{\bigskip\\}
-\newenvironment{answer}{%
-	\setlength\parindent{0pt}\par\medskip\textbf{Answer:}\quad}{%
-	\par\medskip}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TCOLORBOX SETUPS
@@ -176,41 +174,55 @@
 % Corollery
 %================================
 \tcbuselibrary{theorems,skins,hooks}
-\newtcbtheorem[number within=section]{corolary}{Corollary}
+\newtcbtheorem[use counter from=Theorem, number within=section]{corolary}{Corollary}
 {%
 	enhanced
 	,breakable
 	,colback = myp!10
 	,frame hidden
 	,boxrule = 0sp
-	,borderline west = {2pt}{0pt}{myp!85!black}
+	,borderline west = {2pt}{0pt}{myp!60!black}
 	,sharp corners
 	,detach title
 	,before upper = \tcbtitle\par\smallskip
-	,coltitle = myp!85!black
+	,coltitle = myp!60!black
 	,fonttitle = \bfseries\sffamily
 	,description font = \mdseries
 	,separator sign none
 	,segmentation style={solid, myp!85!black}
+%	enhanced
+%	,breakable
+%	,colback = mytheorembg
+%	,frame hidden
+%	,boxrule = 0sp
+%	,borderline west = {2pt}{0pt}{mytheoremfr}
+%	,sharp corners
+%	,detach title
+%	,before upper = \tcbtitle\par\smallskip
+%	,coltitle = mytheoremfr
+%	,fonttitle = \bfseries\sffamily
+%	,description font = \mdseries
+%	,separator sign none
+%	,segmentation style={solid, mytheoremfr}
 }
 {th}
 \tcbuselibrary{theorems,skins,hooks}
-\newtcbtheorem[number within=chapter]{corollary}{Corollary}
+\newtcbtheorem[use counter from=Theorem, number within=chapter]{corollary}{Corollary}
 {%
 	enhanced
 	,breakable
-	,colback = myp!10
+	,colback = mytheorembg
 	,frame hidden
 	,boxrule = 0sp
-	,borderline west = {2pt}{0pt}{myp!85!black}
+	,borderline west = {2pt}{0pt}{mytheoremfr}
 	,sharp corners
 	,detach title
 	,before upper = \tcbtitle\par\smallskip
-	,coltitle = myp!85!black
+	,coltitle = mytheoremfr
 	,fonttitle = \bfseries\sffamily
 	,description font = \mdseries
 	,separator sign none
-	,segmentation style={solid, myp!85!black}
+	,segmentation style={solid, mytheoremfr}
 }
 {th}
 
@@ -219,7 +231,7 @@
 %================================
 
 \tcbuselibrary{theorems,skins,hooks}
-\newtcbtheorem[number within=section]{lemma}{Lemma}
+\newtcbtheorem[use counter from=Theorem, number within=section]{lemma}{Lemma}
 {%
 	enhanced
 	,breakable
@@ -239,7 +251,7 @@
 {th}
 
 
-\newtcbtheorem[number within=chapter]{Lemma}{Lemma}
+\newtcbtheorem[use counter from=theorem, number within=chapter]{Lemma}{Lemma}
 {%
 	enhanced
 	,breakable
@@ -465,14 +477,15 @@
 
 
 %================================
-%  BOX
+% Question BOX
 %================================
 
+
 \makeatletter
-\newtcbtheorem[number within=chapter]{prob}{Problem}{enhanced,
+\newtcbtheorem[number within=chapter]{question}{Question}{enhanced,
 	breakable,
 	colback=white,
-	colframe=mygr,
+	colframe=myb!80!black,
 	attach boxed title to top left={yshift*=-\tcboxedtitleheight},
 	fonttitle=\bfseries,
 	title={#2},
@@ -556,6 +569,30 @@
 	#1,
 }
 
+%================================
+% Algorithm Problem Definition
+%================================
+
+\makeatletter
+\usepackage{tabularx,environ}
+\newcommand{\problemtitle}[1]{\gdef\@problemtitle{\scshape #1}}% Store problem title
+\newcommand{\probleminput}[1]{\gdef\@probleminput{#1}}% Store problem input
+\newcommand{\problemquestion}[1]{\gdef\@problemquestion{#1}}% Store problem question
+\NewEnviron{algoprob}{
+	\problemtitle{}\probleminput{}\problemquestion{}% Default input is empty
+	\BODY% Parse input
+	\par\addvspace{.5\baselineskip}
+	\noindent
+	\begin{tabularx}{\textwidth}{@{\hspace{\parindent}} l X c}
+		\multicolumn{2}{@{\hspace{\parindent}}l}{\@problemtitle} \\% Title
+		\textbf{Input:} & \@probleminput \\% Input
+		\textbf{Question:} & \@problemquestion% Question
+	\end{tabularx}
+	\par\addvspace{.5\baselineskip}
+}
+\makeatother
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SELF MADE COMMANDS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -585,15 +622,25 @@
 \newcommand{\wc}[3][]{\begin{wconc}{#2}{#1}\setlength{\parindent}{1cm}#3\end{wconc}}
 \newcommand{\thmcon}[1]{\begin{Theoremcon}{#1}\end{Theoremcon}}
 \newcommand{\ex}[3][]{\begin{Example}{#2}{#1}#3\end{Example}}
-\newcommand{\qs}[3][]{\begin{problem}{#2}{#1}#3\end{problem}}
 \newcommand{\exc}[3][]{\begin{example}{#2}{#1}#3\end{example}}
 \newcommand{\dfn}[3][]{\begin{Definition}[colbacktitle=red!75!black]{#2}{#1}#3\end{Definition}}
 \newcommand{\dfnc}[3][]{\begin{definition}[colbacktitle=red!75!black]{#2}{#1}#3\end{definition}}
 \newcommand{\opn}[3][]{\begin{open}[colbacktitle=myp!75!black]{#2}{#1}#3\end{open}}
 \newcommand{\opnc}[3][]{\begin{Open}[colbacktitle=myp!75!black]{#2}{#1}#3\end{Open}}
 \newcommand{\pr}[3][]{\begin{problem}{#2}{#1}#3\end{problem}}
-\newcommand{\pf}[2]{\begin{myproof}[#1]#2\end{myproof}}
 
+
+\renewenvironment{proof}{\noindent{\it \textbf{Proof:}}\hspace*{1em}}{\hfill\qed\bigskip\\}
+\newenvironment{proof-sketch}{\noindent{\it \bf Sketch of Proof:}\hspace*{1em}}{\hfill\qed\bigskip\\}
+\newenvironment{proof-idea}{\noindent{\it \bf Proof Idea:}\hspace*{1em}}{\hfill\qed\bigskip\\}
+\newenvironment{proof-of-theorem}[1]{\noindent{\it \bf Proof of \thmref{#1}:}\hspace*{1em}}{\hfill\qed\bigskip\\}
+\newenvironment{proof-of-lemma}[1]{\noindent{\it \bf Proof of Lemma \lemref{#1}:}\hspace*{1em}}{\hfill\qed\bigskip\\}
+\newenvironment{proof-of-corollary}[1]{\noindent{\it \bf Proof of \corrref{#1}:}\hspace*{1em}}{\hfill\qed\bigskip\\}
+\newenvironment{proof-attempt}{\noindent{\it \bf Proof Attempt:}\hspace*{1em}}{\hfill\qed\bigskip\\}
+\newenvironment{alternate-proof}[1][]{\noindent{\textit{\textbf{Alternate Proof }#1:}}\hspace*{1em}}{\hfill\qed\bigskip\\}
+\newenvironment{proofof}[1]{\noindent{\bf Proof:}
+	of #1:\hspace*{1em}}{\hfill\qed\bigskip\\}
+\newenvironment{remark}{\noindent{\bf Remark:}\hspace*{1em}}{\bigskip\\}
 
 
 
@@ -612,10 +659,7 @@
 	{??}
 	{\the\value{#1}}%
 }
-\newcommand{\getCurrentSectionNumber}{\getcurrentref{section}}
-\newenvironment{myproof}[1][\proofname]{%
-	\proof[\bfseries #1: ]%
-}{\endproof}
+
 \newcounter{mylabelcounter}
 
 
@@ -686,7 +730,7 @@
 \titlecontents{chapter}[3.7pc]
 {\addvspace{30pt}%
 	\begin{tikzpicture}[remember picture, overlay]%
-		\draw[fill=doc!60,draw=doc!60] (-7,-.1) rectangle (-0.7,.5);%
+		\draw[fill=doc!60,draw=doc!60] (-7,-.1) rectangle (-0.6,.5);%
 		\pgftext[left,x=-3.6cm,y=0.2cm]{\color{white}\Large\sc\bfseries Chapter\ \thecontentslabel};%
 	\end{tikzpicture}\color{doc!60}\large\sc\bfseries}%
 {}
@@ -718,7 +762,7 @@
 \makeatletter
 \renewcommand{\tableofcontents}{%
 	\chapter*{%
-		\vspace*{-20\p@}%
+		\vspace*{-80\p@}%
 		\begin{tikzpicture}[remember picture, overlay]%
 			\pgftext[right,x=15cm,y=0.2cm]{\color{doc!60}\Huge\sc\bfseries \contentsname};%
 			\draw[fill=doc!60,draw=doc!60] (13,-.75) rectangle (20,1);%
