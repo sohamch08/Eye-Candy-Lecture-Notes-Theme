@@ -42,7 +42,7 @@
 \fancyhf{}% Clear all header and footer fields
 \renewcommand{\headrulewidth}{1pt}% Set header rule width
 \fancyhead[LE]{\itshape\textsc{\nouppercase\rightmark}}% Left even page header
-\fancyhead[RO]{\itshape\textsc\leftmark}% Right odd page header
+\fancyhead[RO]{\itshape\textsc{\nouppercase\leftmark}}% Right odd page header
 \fancyfoot{}% Clear footer
 \fancyhead[RE,LO]{\itshape Page \thepage}% Even page right and odd page left headers
 
@@ -101,7 +101,27 @@
 %================================
 
 \tcbuselibrary{theorems,skins,hooks}
-\newtcbtheorem[number within=section]{Theorem}{Theorem}
+\newtcbtheorem[number within=subsection]{Theorem}{Theorem}
+{%
+	enhanced,
+	breakable,
+	colback = mytheorembg,
+	frame hidden,
+	boxrule = 0sp,
+	borderline west = {2pt}{0pt}{mytheoremfr},
+	sharp corners,
+	detach title,
+	before upper = \tcbtitle\par\smallskip,
+	coltitle = mytheoremfr,
+	fonttitle = \bfseries\sffamily,
+	description font = \mdseries,
+	separator sign none,
+	segmentation style={solid, mytheoremfr},
+}
+{th}
+
+\tcbuselibrary{theorems,skins,hooks}
+\newtcbtheorem[number within=section]{theorem}{Theorem}
 {%
 	enhanced,
 	breakable,
@@ -140,31 +160,64 @@
 % Corollery
 %================================
 \tcbuselibrary{theorems,skins,hooks}
-\newtcbtheorem[number within=section]{corolary}{Corollary}
+\newtcbtheorem[use counter from=Theorem, number within=subsection]{corolary}{Corollary}
 {%
 	enhanced
 	,breakable
 	,colback = myp!10
 	,frame hidden
 	,boxrule = 0sp
-	,borderline west = {2pt}{0pt}{myp!85!black}
+	,borderline west = {2pt}{0pt}{myp!60!black}
 	,sharp corners
 	,detach title
 	,before upper = \tcbtitle\par\smallskip
-	,coltitle = myp!85!black
+	,coltitle = myp!60!black
 	,fonttitle = \bfseries\sffamily
 	,description font = \mdseries
 	,separator sign none
 	,segmentation style={solid, myp!85!black}
+	%	enhanced
+	%	,breakable
+	%	,colback = mytheorembg
+	%	,frame hidden
+	%	,boxrule = 0sp
+	%	,borderline west = {2pt}{0pt}{mytheoremfr}
+	%	,sharp corners
+	%	,detach title
+	%	,before upper = \tcbtitle\par\smallskip
+	%	,coltitle = mytheoremfr
+	%	,fonttitle = \bfseries\sffamily
+	%	,description font = \mdseries
+	%	,separator sign none
+	%	,segmentation style={solid, mytheoremfr}
+}
+{th}
+\tcbuselibrary{theorems,skins,hooks}
+\newtcbtheorem[use counter from=Theorem, number within=section]{corollary}{Corollary}
+{%
+	enhanced
+	,breakable
+	,colback = mytheorembg
+	,frame hidden
+	,boxrule = 0sp
+	,borderline west = {2pt}{0pt}{mytheoremfr}
+	,sharp corners
+	,detach title
+	,before upper = \tcbtitle\par\smallskip
+	,coltitle = mytheoremfr
+	,fonttitle = \bfseries\sffamily
+	,description font = \mdseries
+	,separator sign none
+	,segmentation style={solid, mytheoremfr}
 }
 {th}
 
-%%================================
-%% LEMMA
-%%================================
+%================================
+% LEMMA
+%================================
 
 \tcbuselibrary{theorems,skins,hooks}
-\newtcbtheorem[number within=section]{lemma}{Lemma}
+\newtcbtheorem[use counter from=Theorem, number within=subsection]{lemma}{Lemma}
 {%
 	enhanced
 	,breakable
@@ -183,12 +236,8 @@
 }
 {th}
 
-%%================================
-%% CLAIM
-%%================================
 
-\tcbuselibrary{theorems,skins,hooks}
-\newtcbtheorem[number within=section]{claim}{Claim}
+\newtcbtheorem[use counter from=theorem, number within=section]{Lemma}{Lemma}
 {%
 	enhanced
 	,breakable
@@ -207,11 +256,55 @@
 }
 {th}
 
-%%================================
-%% EXAMPLE BOX
-%%================================
+%================================
+% CLAIM
+%================================
 
-\newtcbtheorem[number within=section]{Example}{Example}
+\tcbuselibrary{theorems,skins,hooks}
+\newtcbtheorem[number within=subsection]{claim}{Claim}
+{%
+	enhanced
+	,breakable
+	,colback = myg!10
+	,frame hidden
+	,boxrule = 0sp
+	,borderline west = {2pt}{0pt}{myg}
+	,sharp corners
+	,detach title
+	,before upper = \tcbtitle\par\smallskip
+	,coltitle = myg!85!black
+	,fonttitle = \bfseries\sffamily
+	,description font = \mdseries
+	,separator sign none
+	,segmentation style={solid, myg!85!black}
+}
+{th}
+
+
+\newtcbtheorem[number within=section]{Claim}{Claim}
+{%
+	enhanced
+	,breakable
+	,colback = myg!10
+	,frame hidden
+	,boxrule = 0sp
+	,borderline west = {2pt}{0pt}{myg}
+	,sharp corners
+	,detach title
+	,before upper = \tcbtitle\par\smallskip
+	,coltitle = myg!85!black
+	,fonttitle = \bfseries\sffamily
+	,description font = \mdseries
+	,separator sign none
+	,segmentation style={solid, myg!85!black}
+}
+{th}
+
+%================================
+% EXAMPLE BOX
+%================================
+
+\newtcbtheorem[number within=subsection]{Example}{Example}
 {%
 	colback = myexamplebg
 	,breakable
@@ -228,12 +321,48 @@
 }
 {ex}
 
+\newtcbtheorem[number within=section]{example}{Example}
+{%
+	colback = myexamplebg
+	,breakable
+	,colframe = myexamplefr
+	,coltitle = myexampleti
+	,boxrule = 1pt
+	,sharp corners
+	,detach title
+	,before upper=\tcbtitle\par\smallskip
+	,fonttitle = \bfseries
+	,description font = \mdseries
+	,separator sign none
+	,description delimiters parenthesis
+}
+{ex}
 
-%%================================
-%% DEFINITION BOX
-%%================================
+%================================
+% DEFINITION BOX
+%================================
 
-\newtcbtheorem[number within=section]{Definition}{Definition}{enhanced,
+\newtcbtheorem[number within=subsection]{Definition}{Definition}{enhanced,
+	before skip=2mm,after skip=2mm, colback=red!5,colframe=red!80!black,boxrule=0.5mm,
+	attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight}, varwidth boxed title*=-3cm,
+	boxed title style={frame code={
+			\path[fill=tcbcolback]
+			([yshift=-1mm,xshift=-1mm]frame.north west)
+			arc[start angle=0,end angle=180,radius=1mm]
+			([yshift=-1mm,xshift=1mm]frame.north east)
+			arc[start angle=180,end angle=0,radius=1mm];
+			\path[left color=tcbcolback!60!black,right color=tcbcolback!60!black,
+			middle color=tcbcolback!80!black]
+			([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)
+			[rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)
+			-- (frame.south east) -- (frame.south west)
+			-- ([xshift=-1mm,yshift=-1mm]frame.north west)
+			[sharp corners]-- cycle;
+		},interior engine=empty,
+	},
+	fonttitle=\bfseries,
+	title={#2},#1}{def}
+\newtcbtheorem[number within=section]{definition}{Definition}{enhanced,
 	before skip=2mm,after skip=2mm, colback=red!5,colframe=red!80!black,boxrule=0.5mm,
 	attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight}, varwidth boxed title*=-3cm,
 	boxed title style={frame code={
@@ -255,12 +384,31 @@
 	title={#2},#1}{def}
 
 
+%================================
+% OPEN QUESTION BOX
+%================================
 
-%%================================
-%% OPEN QUESTION BOX
-%%================================
-
-\newtcbtheorem[number within=section]{open}{Open tion}{enhanced,
+\newtcbtheorem[number within=subsection]{open}{Open Question}{enhanced,
+	before skip=2mm,after skip=2mm, colback=myp!5,colframe=myp!80!black,boxrule=0.5mm,
+	attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight}, varwidth boxed title*=-3cm,
+	boxed title style={frame code={
+			\path[fill=tcbcolback]
+			([yshift=-1mm,xshift=-1mm]frame.north west)
+			arc[start angle=0,end angle=180,radius=1mm]
+			([yshift=-1mm,xshift=1mm]frame.north east)
+			arc[start angle=180,end angle=0,radius=1mm];
+			\path[left color=tcbcolback!60!black,right color=tcbcolback!60!black,
+			middle color=tcbcolback!80!black]
+			([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)
+			[rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)
+			-- (frame.south east) -- (frame.south west)
+			-- ([xshift=-1mm,yshift=-1mm]frame.north west)
+			[sharp corners]-- cycle;
+		},interior engine=empty,
+	},
+	fonttitle=\bfseries,
+	title={#2},#1}{def}
+\newtcbtheorem[number within=section]{Open}{Open Question}{enhanced,
 	before skip=2mm,after skip=2mm, colback=myp!5,colframe=myp!80!black,boxrule=0.5mm,
 	attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight}, varwidth boxed title*=-3cm,
 	boxed title style={frame code={
@@ -281,12 +429,14 @@
 	fonttitle=\bfseries,
 	title={#2},#1}{def}
 
-%%================================
-%% EXERCISE BOX
-%%================================
+
+
+%================================
+% EXERCISE BOX
+%================================
 
 \makeatletter
-\newtcbtheorem{problem}{Problem}{enhanced,
+\newtcbtheorem[number within=subsection]{problem}{Problem}{enhanced,
 	breakable,
 	colback=white,
 	colframe=myb!80!black,
@@ -308,19 +458,20 @@
 		(frame.north) -| cycle;
 	},
 	#1
-}{ex}
+}{def}
 \makeatother
 
 
-%%================================
-%% Question BOX
-%%================================
+%================================
+% Question BOX
+%================================
+
 
 \makeatletter
-\newtcbtheorem[number within=chapter]{prob}{Problem}{enhanced,
+\newtcbtheorem[number within=section]{question}{Question}{enhanced,
 	breakable,
 	colback=white,
-	colframe=mygr,
+	colframe=myb!80!black,
 	attach boxed title to top left={yshift*=-\tcboxedtitleheight},
 	fonttitle=\bfseries,
 	title={#2},
@@ -342,11 +493,32 @@
 }{qs}
 \makeatother
 
+\newtcbtheorem[number within=section]{wconc}{Wrong Concept}{
+	breakable,
+	enhanced,
+	colback=white,
+	colframe=myr,
+	arc=0pt,
+	outer arc=0pt,
+	fonttitle=\bfseries\sffamily\large,
+	colbacktitle=myr,
+	attach boxed title to top left={},
+	boxed title style={
+		enhanced,
+		skin=enhancedfirst jigsaw,
+		arc=3pt,
+		bottom=0pt,
+		interior style={fill=myr}
+	},
+	#1
+}{def}
 
-%%================================
-%% NOTE BOX
-%%================================
-%
+
+
+%================================
+% NOTE BOX
+%================================
+
 \usetikzlibrary{arrows,calc,shadows.blur}
 \tcbuselibrary{skins}
 \newtcolorbox{note}[1][]{%
@@ -382,7 +554,8 @@
 	},
 	#1,
 }
-%
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SELF MADE COMMANDS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -423,7 +596,7 @@
 \newenvironment{proof-of-lemma}[1]{\noindent{\it \bf Proof of Lemma \lemref{#1}:}\hspace*{1em}}{\hfill\qed\bigskip\\}
 \newenvironment{proof-of-corollary}[1]{\noindent{\it \bf Proof of \corrref{#1}:}\hspace*{1em}}{\hfill\qed\bigskip\\}
 \newenvironment{proof-attempt}{\noindent{\it \bf Proof Attempt:}\hspace*{1em}}{\hfill\qed\bigskip\\}
-\newenvironment{alternate-proof}[1][]{\noindent{\textit{\textbf{Alternate Proof }#1:}}\hspace*{1em}}{\hfill\qed\bigskip\\}
+\newenvironment{alternate-proof}[1][]{\noindent{\textbf{\textbf{Alternate Proof }\thmref{#1}:}}\hspace*{1em}}{\hfill\qed\bigskip\\}
 \newenvironment{proofof}[1]{\noindent{\bf Proof:}
 	of #1:\hspace*{1em}}{\hfill\qed\bigskip\\}
 \newenvironment{remark}{\noindent{\bf Remark:}\hspace*{1em}}{\bigskip\\}
@@ -516,8 +689,8 @@
 \titlecontents{section}[3.7pc]
 {\addvspace{30pt}%
 	\begin{tikzpicture}[remember picture, overlay]%
-		\draw[fill=doc!60,draw=doc!60] (-7,-.1) rectangle (-0.9,.5);%
-		\pgftext[left,x=-3.6cm,y=0.2cm]{\color{white}\Large\sc\bfseries Section\ \thecontentslabel};%
+		\draw[fill=doc!60,draw=doc!60] (-7,-.1) rectangle (-0.6,.5);%
+		\pgftext[left,x=-3.3cm,y=0.17cm]{\color{white}\Large\sc\bfseries Section\ \thecontentslabel};%
 	\end{tikzpicture}\color{doc!60}\large\sc\bfseries}%
 {}
 {}
